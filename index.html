@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge Commission App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+        select, input, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+        }
+        .payment-section {
+            margin-top: 20px;
+        }
+        #payNow {
+            background-color: #28a745;
+        }
+        #payNow:hover {
+            background-color: #218838;
+        }
+        .help-section {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #333;
+        }
+        .help-section a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mobile Recharge Commission</h2>
+        <form id="rechargeForm">
+            <label for="operator">Select Operator</label>
+            <select id="operator" required onchange="loadPlans()">
+                <option value="" disabled selected>Select Operator</option>
+                <option value="airtel">Airtel</option>
+                <option value="jio">Jio</option>
+                <option value="vi">Vi</option>
+            </select>
+
+            <label for="rechargePlans">Select Recharge Plan</label>
+            <select id="rechargePlans" required onchange="checkCustomAmount()">
+                <option value="" disabled selected>Select a plan</option>
+                <option value="custom">Enter Amount Manually</option>
+            </select>
+
+            <input type="number" id="customAmount" placeholder="Enter Amount" style="display: none;" min="1">
+
+            <button type="submit">Proceed</button>
+        </form>
+
+        <div class="output">
+            <h3>Commission Details</h3>
+            <p id="commissionOutput">Your (2.5%) commission will appear here.</p>
+        </div>
+
+        <!-- Payment Section -->
+        <div class="payment-section">
+            <h3 style="color: red;">Pay Final Amount & Send Recharge Number</h3>
+            <button id="payNow" onclick="redirectToGPay()">Pay Now</button>
+            <p id="copyMessage" style="color: green; display: none;">Copied!</p>
+        </div>
+
+        <!-- Help Section -->
+        <div class="help-section">
+            <p>For any help, call: <a href="tel:6289710173">📞 6289710173</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
